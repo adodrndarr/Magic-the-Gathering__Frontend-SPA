@@ -1,0 +1,97 @@
+<h2 *ngIf="name">Hello {{ name }}</h2><br /><br /><br /><br />
+<input type="text" #searchEl placeholder="Search by name or text..." />
+<button (click)="onSearch(searchEl)">
+    Search
+</button>
+<button (click)="onReset()">
+    Reset
+</button>
+
+<form 
+    class="form" 
+    [formGroup]="dropdownForm" 
+    (ngSubmit)="onSubmit()"
+>
+    <select multiple formControlName="colors">
+        <option *ngFor="let color of filterByColors" [ngValue]="color">
+            {{ color }}
+        </option>
+    </select>
+
+    <select multiple formControlName="types">
+        <option *ngIf="filterByTypes.length === 0" disabled>Loading...</option>
+        <option *ngFor="let type of filterByTypes" [ngValue]="type">
+            {{ type }}
+        </option>
+    </select>
+
+    <select multiple formControlName="name">
+        <option value="ascending">Ascending</option>
+        <option value="descending">Descending</option>
+    </select>
+
+    <button 
+        class="primary-button" 
+        type="submit" 
+        [disabled]="!dropdownForm.valid"
+    >Filter</button>
+</form><br />
+
+
+<br /><br />
+<h3 routerLink="/home">Logout</h3>
+
+<div *ngIf="!showFilteredCards">
+    <div *ngFor="let card of cards">
+        <h2>Set: {{ card.setName }}</h2>
+        <h2>Card name: {{ card.name }}</h2>
+        <div *ngIf="card.types.length > 0">
+            <h4>Types:</h4>
+            <ul>
+                <li *ngFor="let type of card.types">{{ type }}</li>
+            </ul>
+        </div>
+        <div *ngIf="card.colors.length > 0">
+            <h4>Colors:</h4>
+            <ul>
+                <li *ngFor="let color of card.colors">{{ color }}</li>
+            </ul>
+        </div>
+        <br /><br /><br /><br /><br /><br />
+    </div>
+</div>
+
+<div *ngIf="showFilteredCards">
+    <div *ngFor="let card of filteredCards">
+        <h2>Set: {{ card.setName }}</h2>
+        <h2>Card name: {{ card.name }}</h2>
+        <div *ngIf="card.types.length > 0">
+            <h4>Types:</h4>
+            <ul>
+                <li *ngFor="let type of card.types">{{ type }}</li>
+            </ul>
+        </div>
+        <div *ngIf="card.colors.length > 0">
+            <h4>Colors:</h4>
+            <ul>
+                <li *ngFor="let color of card.colors">{{ color }}</li>
+            </ul>
+        </div>
+        <br /><br /><br /><br /><br /><br />
+    </div>
+</div>
+
+<div *ngIf="filteredCards.length < 1 && !isLoading">
+    <h2>No such card was found.</h2>
+</div>
+
+<div *ngIf="cards.length < 1 && !isLoading">
+    <h2>Currently there are no cards available...</h2>
+</div>
+
+<app-error *ngIf="errMessage">
+    {{ errMessage }}
+</app-error>
+
+<app-loading-spinner *ngIf="isLoading">
+</app-loading-spinner>

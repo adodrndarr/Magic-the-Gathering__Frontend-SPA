@@ -1,0 +1,34 @@
+<div class="login__page">
+    <div class="form__container">
+        <form 
+            class="form"
+            [formGroup]="loginForm" 
+            (ngSubmit)="onSubmit()"
+        >
+            <h2>Login</h2>
+            <label for="name">Username:</label>
+            <input 
+                type="text" 
+                class="form__input" 
+                id="name" 
+                formControlName="name"
+            ><br />
+
+            <span 
+                *ngIf="isInvalidInput('name')"
+            >
+                <span *ngIf="isRequired('name')">Name is required.</span>
+                <span *ngIf="isInvalidFormat('name')">It should begin with uppercase letter and be at least 3 characters long.</span>
+            </span>
+
+
+            <div>
+                <button 
+                    class="primary-button" 
+                    type="submit" 
+                    [disabled]="!loginForm.valid"
+                >Login</button>
+            </div>
+        </form><br />
+    </div>
+</div>
