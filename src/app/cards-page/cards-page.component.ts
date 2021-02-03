@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Card } from '../Entities/Models/card.model';
 import { DataStorageService } from '../services/data-storage.service';
 import { HelperService } from '../services/helper.service';
@@ -32,6 +32,8 @@ export class CardsPageComponent implements OnInit {
   filterByColors = ['white', 'blue', 'black', 'red', 'green'];
   filterByTypes = [];
 
+  showCheckbox = '';
+
   ngOnInit() {
     this.initializeCards();
     this.initializeDropdownForm();
@@ -39,6 +41,7 @@ export class CardsPageComponent implements OnInit {
   }
 
   onSubmit(): void {
+    this.filteredCards.length = 0;
     this.handleFilters();
   }
 
@@ -71,17 +74,18 @@ export class CardsPageComponent implements OnInit {
 
   initializeDropdownForm(): void {
     this.dropdownForm = this.formBuilder.group({
-      colors: [null],
-      name: [null],
-      types: [null]
-    });
+      colors: this.formBuilder.array([]),
+      types: this.formBuilder.array([]),
+      name: [null]
+    })
   }
 
   handleFilters(): void {
-    const colors: string[] = this.dropdownForm.get('colors').value;
     let noSuchCardFound;
 
+    const colors: string[] = this.dropdownForm.get('colors').value;
     if (colors && colors.length > 0) {
+      console.log(colors);
       this.applyFilterBy('colors', colors);
   
       noSuchCardFound = (this.filteredCards.length == 0);
@@ -141,21 +145,41 @@ export class CardsPageComponent implements OnInit {
 
   onSearch(searchEl: any): void {
     const searchTerm: string = searchEl.value;
-    if (this.filteredCards.length === 0) {   
-      this.filteredCards = this.cards
-        .filter(card => this.helperService.filterByNameOrText(card, searchTerm));
-    }
-    else {
-      this.filteredCards = this.filteredCards
-        .filter(card => this.helperService.filterByNameOrText(card, searchTerm));
-    }
+
+    this.filteredCards = this.cards
+      .filter(card => this.helperService.filterByNameOrText(card, searchTerm));
 
     this.showFilteredCards = true;
     searchEl.value = '';
   }
 
+  onCheckboxChange(event, control): void {
+    const eTarget = event.target;
+    const formArray: FormArray = this.dropdownForm.get(control) as FormArray;
+    
+    if (eTarget.checked && eTarget.value) {
+      formArray.push(new FormControl(eTarget.value)); 
+    } else {
+       const index = formArray.controls
+        .findIndex(control => control.value === eTarget.value);
+       formArray.removeAt(index);
+    }
+  }
+
+  onSelect(checkbox): void {
+    if (this.showCheckbox === checkbox) {
+      this.showCheckbox = '';
+      this.dropdownForm['colors'] = this.formBuilder.array([]);
+      this.dropdownForm['types'] = this.formBuilder.array([]);
+      this.dropdownForm['name'] = null;
+
+      return;
+    }
+
+    this.showCheckbox = checkbox;
+  }
+
   onReset(): void {
-    this.filteredCards.length = 0;
     this.showFilteredCards = false;
   }
 }

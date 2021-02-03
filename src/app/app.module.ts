@@ -9,6 +9,7 @@ import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinne
 import { ReactiveFormsModule } from '@angular/forms';
 import { CardsPageComponent } from './cards-page/cards-page.component';
 import { HttpClientModule } from '@angular/common/http';
+import { MagicCardComponent } from './cards-page/magic-card/magic-card.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { HttpClientModule } from '@angular/common/http';
     HomePageComponent,
     ErrorComponent,
     LoadingSpinnerComponent,
-    CardsPageComponent
+    CardsPageComponent,
+    MagicCardComponent
   ],
   imports: [
     BrowserModule,

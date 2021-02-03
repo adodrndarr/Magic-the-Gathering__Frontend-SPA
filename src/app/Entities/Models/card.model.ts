@@ -4,6 +4,7 @@ export class Card {
         public name: string,
         public types: string[],
         public colors: string[],
-        public text: string
+        public text: string,
+        public imageUrl: string
     ) { }
 }
