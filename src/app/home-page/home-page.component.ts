@@ -32,7 +32,8 @@ export class HomePageComponent implements OnInit {
 
     this.name = this.loginForm.value['name'];
     this.dataStorageService.name = this.name;
-    
+    localStorage.setItem('name', this.name);
+
     this.router.navigateByUrl('/magic-cards');
   }
 

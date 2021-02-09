@@ -1,65 +1,45 @@
-<!-- <div *ngIf="card">
-    <h2>Set: {{ card.setName }}</h2>
-    <h2>Card name: {{ card.name }}</h2>
-    <div *ngIf="card.types.length > 0">
-        <h4>Types:</h4>
-        <ul>
-            <li *ngFor="let type of card.types">{{ type }}</li>
-        </ul>
-    </div>
-    <div *ngIf="card.colors.length > 0">
-        <h4>Colors:</h4>
-        <ul>
-            <li *ngFor="let color of card.colors">{{ color }}</li>
-        </ul>
-    </div>
-    <br /><br /><br /><br /><br /><br />
-</div> -->
-
 <div *ngIf="card" class="card">
-    <!-- <div class="card__container"> -->
-        <!-- <div class="card"> -->
-            <div class="card__header">
-                <h2>{{ card.setName }}</h2>
-                <h2 class="card__header--name">{{ card.name }}</h2>
-            </div>
+    <div class="card__header">
+        <h2>{{ card.setName }}</h2>
+        <h2 class="card__header--name">{{ card.name }}</h2>
+    </div>
     
-            <div class="card__content">
-                <div class="card__types">
-                    <div *ngIf="card.types.length > 0">
-                        <h4>Types:</h4>
-                        <ul>
-                            <li *ngFor="let type of card.types">{{ type }}</li>
-                        </ul>
-                    </div>        
-                </div>
-                <a href='https://magic.wizards.com/en' target="_blank">
-                    <img 
-                        [src]="card.imageUrl" 
-                        alt="Card image" 
-                        class="card__img" 
-                        *ngIf="card.imageUrl"   
-                    >
-                    <img 
-                        class="card__img--not-available" 
-                        src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1231630/moon2.png" 
-                        alt="No image available"
-                        *ngIf="!card.imageUrl"
-                    >
-                </a>   
-                <div class="card__colors">
-                    <div *ngIf="card.colors.length > 0">
-                        <h4>Colors:</h4>
-                        <ul>
-                            <li *ngFor="let color of card.colors">{{ color }}</li>
-                        </ul>
-                    </div>    
-                </div>    
-            </div>
-            <div class="card__text">
-                <p>{{ card.text }}</p>
-            </div>
-            
-        <!-- </div> -->
-    <!-- </div> -->
+    <div class="card__content">
+        <div class="card__types">
+            <div *ngIf="card.types.length > 0">
+                <h4>Types:</h4>
+                <ul>
+                    <li *ngFor="let type of card.types">{{ type }}</li>
+                </ul>
+            </div>        
+        </div>
+
+        <a href='https://magic.wizards.com/en' target="_blank">
+            <img 
+                [src]="card.imageUrl" 
+                alt="Card image" 
+                class="card__img" 
+                *ngIf="card.imageUrl"   
+            >
+            <img 
+                class="card__img--not-available" 
+                src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1231630/moon2.png" 
+                alt="No image available"
+                *ngIf="!card.imageUrl"
+            >
+        </a>   
+
+        <div class="card__colors">
+            <div *ngIf="card.colors.length > 0">
+                <h4>Colors:</h4>
+                <ul>
+                    <li *ngFor="let color of card.colors">{{ color }}</li>
+                </ul>
+            </div>    
+        </div>     
+    </div>
+    
+    <div class="card__text">
+        <p>{{ card.text }}</p>
+    </div>
 </div>

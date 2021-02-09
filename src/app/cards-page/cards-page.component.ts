@@ -37,7 +37,9 @@ export class CardsPageComponent implements OnInit {
   ngOnInit() {
     this.initializeCards();
     this.initializeDropdownForm();
-    this.name = this.dataStorageService.name;
+    this.name = this.dataStorageService.name ? 
+      this.dataStorageService.name : 
+      localStorage.getItem('name'); 
   }
 
   onSubmit(): void {
@@ -77,15 +79,17 @@ export class CardsPageComponent implements OnInit {
       colors: this.formBuilder.array([]),
       types: this.formBuilder.array([]),
       name: [null]
-    })
+    });
+
+    this.dropdownForm.controls['name'].patchValue('descending');
   }
 
   handleFilters(): void {
+    this.resetDropdown();
     let noSuchCardFound;
 
     const colors: string[] = this.dropdownForm.get('colors').value;
     if (colors && colors.length > 0) {
-      console.log(colors);
       this.applyFilterBy('colors', colors);
   
       noSuchCardFound = (this.filteredCards.length == 0);
@@ -106,7 +110,7 @@ export class CardsPageComponent implements OnInit {
 
     const sortByName = this.dropdownForm.get('name').value;
     if (sortByName) {
-      this.sortItems(sortByName[0]);
+      this.sortItems(sortByName);
     }
   }
 
@@ -168,15 +172,15 @@ export class CardsPageComponent implements OnInit {
 
   onSelect(checkbox): void {
     if (this.showCheckbox === checkbox) {
-      this.showCheckbox = '';
-      this.dropdownForm['colors'] = this.formBuilder.array([]);
-      this.dropdownForm['types'] = this.formBuilder.array([]);
-      this.dropdownForm['name'] = null;
-
+      this.resetDropdown();
       return;
     }
 
     this.showCheckbox = checkbox;
+  }
+
+  resetDropdown(): void {
+    this.showCheckbox = '';
   }
 
   onReset(): void {

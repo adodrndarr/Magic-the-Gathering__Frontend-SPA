@@ -10,6 +10,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CardsPageComponent } from './cards-page/cards-page.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MagicCardComponent } from './cards-page/magic-card/magic-card.component';
+import { NotFoundComponent } from './shared/not-found/not-found.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { MagicCardComponent } from './cards-page/magic-card/magic-card.component
     ErrorComponent,
     LoadingSpinnerComponent,
     CardsPageComponent,
-    MagicCardComponent
+    MagicCardComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

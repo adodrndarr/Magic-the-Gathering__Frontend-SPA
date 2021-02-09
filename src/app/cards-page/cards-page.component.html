@@ -1,76 +1,80 @@
-<h2 *ngIf="name">Hello {{ name }}</h2><br /><br /><br /><br />
-<input type="text" #searchEl placeholder="Search by name or text..." />
-<button (click)="onSearch(searchEl)">
-    Search
-</button>
-<button (click)="onReset()">
-    Reset
-</button>
+<header class="main-header">
+	<div class="container">
+		<nav class="main-nav">
+            <h2 *ngIf="name" class="name">
+                Welcome <span class="userName">{{ name }}</span>, this is planet <span class="planet">Ampryn - 139</span>
+            </h2>    
+            <div class="search__content">
+                <input type="text" #searchEl placeholder="Search by name or text..." />
+                <button 
+                    class="primary-button" 
+                    (click)="onSearch(searchEl)"
+                    [disabled]="isLoading"
+                >
+                    Search
+                </button>
+                <button 
+                    class="reset-button" 
+                    (click)="onReset()"
+                    [disabled]="isLoading"
+                >
+                    Reset
+                </button>    
+                <p *ngIf="showFilteredCards">Found <b>{{ filteredCards.length }}</b> result(s).</p>
+            </div>  
 
-<form 
-    class="form" 
-    [formGroup]="dropdownForm" 
-    (ngSubmit)="onSubmit()"
->
-    <div class="colors__container">
-        <h2 (click)="onSelect('colors')">Colors:</h2>
-        <div [hidden]="!(showCheckbox === 'colors')">
-            <div class="colors" *ngFor="let color of filterByColors">
-                <label>{{ color }}
-                    <input 
-                        type="checkbox" 
-                        [value]="color" 
-                        (change)="onCheckboxChange($event, 'colors')" 
-                    />
-                </label>
-            </div>
-        </div>
-    </div><br /><br /><br /><br />
+			<div class="main-nav__list">              
+                <form 
+                    class="form" 
+                    [formGroup]="dropdownForm" 
+                    (ngSubmit)="onSubmit()"
+                >
+                    <div class="colors__container">
+                        <h2 (click)="onSelect('colors')">Colors</h2>
+                        <div [hidden]="!(showCheckbox === 'colors')">
+                            <div class="colors" *ngFor="let color of filterByColors">
+                                <label>{{ color }}
+                                    <input 
+                                        type="checkbox" 
+                                        [value]="color" 
+                                        (change)="onCheckboxChange($event, 'colors')" 
+                                    />
+                                </label>
+                            </div>
+                        </div>
+                    </div>
 
-    <div class="types__container">
-        <h2 (click)="onSelect('types')">Types:</h2>
-        <div *ngIf="filterByTypes.length === 0">Loading...</div>
-        <div [hidden]="!(showCheckbox === 'types')">
-            <div class="types"  *ngFor="let type of filterByTypes">
-                <label>{{ type }}
-                    <input 
-                        type="checkbox" 
-                        [value]="type" 
-                        (change)="onCheckboxChange($event, 'types')" 
-                    />
-                </label>
-            </div>
-        </div>
-    </div><br /><br /><br /><br />
+                    <div class="types__container">
+                        <h2 (click)="onSelect('types')">Types</h2>
+                        <div [hidden]="!(showCheckbox === 'types')">
+                            <div class="types"  *ngFor="let type of filterByTypes">
+                                <label>{{ type }}
+                                    <input 
+                                        type="checkbox" 
+                                        [value]="type" 
+                                        (change)="onCheckboxChange($event, 'types')" 
+                                    />
+                                </label>
+                            </div>
+                        </div>
+                    </div>
 
-    <!-- <select multiple formControlName="colors">
-        <option *ngFor="let color of filterByColors" [ngValue]="color">
-            {{ color }}
-        </option>
-    </select> -->
+                    <select formControlName="name">
+                        <option [ngValue]="'ascending'">Ascending</option>
+                        <option [ngValue]="'descending'">Descending</option>
+                    </select>
 
-    <!-- <select multiple formControlName="types">
-        <option *ngIf="filterByTypes.length === 0" disabled>Loading...</option>
-        <option *ngFor="let type of filterByTypes" [ngValue]="type">
-            {{ type }}
-        </option>
-    </select> -->
-
-    <select multiple formControlName="name">
-        <option value="ascending">Ascending</option>
-        <option value="descending">Descending</option>
-    </select>
-
-    <button 
-        class="primary-button" 
-        type="submit" 
-        [disabled]="!dropdownForm.valid"
-    >Filter</button>
-</form><br />
-
-
-<br /><br />
-<h3 routerLink="/home">Logout</h3>
+                    <button 
+                        class="primary-button" 
+                        type="submit" 
+                        [disabled]="!dropdownForm.valid || isLoading"
+                    >Filter</button>
+                </form>
+                <h2 routerLink="/home">Logout</h2>
+			</div>
+		</nav>
+	</div>
+</header>
 
 <div *ngIf="!showFilteredCards">
     <div class="card__container">
@@ -80,32 +84,33 @@
         >
         </app-magic-card>
     </div>
-
 </div>
 
 <div *ngIf="showFilteredCards">
-    <h2>Found {{ filteredCards.length }} results.</h2>
     <div class="card__container">
         <app-magic-card 
             *ngFor="let newCard of filteredCards" 
             [card]="newCard"
          >
-    </app-magic-card>
+        </app-magic-card>
     </div>
-
 </div>
 
-<div *ngIf="filteredCards.length < 1 && !isLoading && showFilteredCards">
-    <h2>No such card was found.</h2>
+
+<div *ngIf="filteredCards.length < 1 && 
+            !isLoading               && 
+            showFilteredCards"
+>
+    <app-not-found></app-not-found>
 </div>
 
 <div *ngIf="cards.length < 1 && !isLoading">
-    <h2>Currently there are no cards available...</h2>
+    <app-not-found></app-not-found>
 </div>
 
 <app-error *ngIf="errMessage">
     {{ errMessage }}
 </app-error>
 
-<app-loading-spinner *ngIf="isLoading">
+<app-loading-spinner *ngIf="isLoading"> 
 </app-loading-spinner>

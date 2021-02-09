@@ -1,0 +1,95 @@
+.login__page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 15%;
+    & .form {
+        display: flex;
+        flex-direction: column;
+        padding: 16px;
+        margin: 0;
+
+        align-items: center;
+        width: 100%;
+        height: 350px;
+
+        text-align: center;
+
+        & h2 {
+            text-align: center;
+            margin-bottom: 10%;
+            font-size: 40px;
+        }
+
+        & label {
+            font-size: 25px;
+            font-weight: bold;
+            margin-right: 1%;
+        }
+
+        & input {
+            margin-left: 5%;
+            outline: none;
+        }
+
+        & span {
+            font-size: 25px;
+            font-weight: bold;
+        }
+    }
+}
+
+.form__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    background-color: black;
+    color: yellow;
+    border: 2px solid gray;
+    box-shadow: 3px 3px 5px 3px gray;
+
+    width: 25%;
+
+    background-color: hsla(200, 40%, 30%, 0.4);
+    background-image: 
+        url("https://78.media.tumblr.com/cae86e76225a25b17332dfc9cf8b1121/tumblr_p7n8kqHMuD1uy4lhuo1_540.png"),
+        url("https://78.media.tumblr.com/66445d34fe560351d474af69ef3f2fb0/tumblr_p7n908E1Jb1uy4lhuo1_1280.png"),
+        url("https://78.media.tumblr.com/8cd0a12b7d9d5ba2c7d26f42c25de99f/tumblr_p7n8kqHMuD1uy4lhuo2_1280.png"),
+        url("https://78.media.tumblr.com/5ecb41b654f4e8878f59445b948ede50/tumblr_p7n8on19cV1uy4lhuo1_1280.png"),
+        url("https://78.media.tumblr.com/28bd9a2522fbf8981d680317ccbf4282/tumblr_p7n8kqHMuD1uy4lhuo3_1280.png");
+    background-repeat: repeat-x;
+    background-position: 0 20%, 0 100%, 0 50%, 0 100%, 0 0;
+    background-size: 2500px, 800px, 500px 200px, 1000px, 400px 260px;
+    animation: 50s forest infinite linear;
+}
+
+.login__info {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+@keyframes forest {
+    100% {
+        background-position: -5000px 20%, -800px 95%, 500px 50%, 1000px 100%, 400px 0;
+    }
+}
+
+/* Responsiveness */
+@media (max-width: 1440px) {
+    .form__container {
+        width: 50%;
+    }
+}
+
+@media (max-width: 768px) {
+    .form__container {
+        width: 90%;
+    }
+}
+
