@@ -104,7 +104,10 @@
     <app-not-found></app-not-found>
 </div>
 
-<div *ngIf="cards.length < 1 && !isLoading">
+<div *ngIf="cards.length < 1 && 
+     !isLoading && 
+     !errMessage"
+>
     <app-not-found></app-not-found>
 </div>
 

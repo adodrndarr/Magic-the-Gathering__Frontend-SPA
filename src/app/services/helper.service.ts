@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Card } from '../Entities/Models/card.model';
 
 
 @Injectable({

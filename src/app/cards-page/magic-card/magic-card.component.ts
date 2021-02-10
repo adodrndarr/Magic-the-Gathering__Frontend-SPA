@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Card } from 'src/app/Entities/Models/card.model';
 
 
@@ -6,12 +6,9 @@ import { Card } from 'src/app/Entities/Models/card.model';
   selector: 'app-magic-card',
   templateUrl: './magic-card.component.html'
 })
-export class MagicCardComponent implements OnInit {
+export class MagicCardComponent {
   constructor() { }
 
+
   @Input() card: Card;
-
-  ngOnInit() {
-  }
-
 }

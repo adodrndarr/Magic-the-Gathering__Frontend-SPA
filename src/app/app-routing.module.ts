@@ -8,7 +8,11 @@ import { HomePageComponent } from './home-page/home-page.component';
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomePageComponent },
-  { path: 'magic-cards', canActivate: [AuthGuard], component: CardsPageComponent },
+  { 
+    path: 'magic-cards', 
+    canActivate: [AuthGuard], 
+    component: CardsPageComponent 
+  },
   { path: '**', redirectTo: '/home', pathMatch: 'full' }
 ];
 

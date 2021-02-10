@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   selector: 'app-loading-spinner',
   template: `
     <div class="loading__container">
-      <h2>Calculating distances...</h2>
+      <h2>Calculating distances between stars...</h2>
       <div class="lds-circle"><div>
       </div></div>
     </div>`

@@ -37,9 +37,7 @@ export class CardsPageComponent implements OnInit {
   ngOnInit() {
     this.initializeCards();
     this.initializeDropdownForm();
-    this.name = this.dataStorageService.name ? 
-      this.dataStorageService.name : 
-      localStorage.getItem('name'); 
+    this.initializeUsername();
   }
 
   onSubmit(): void {
@@ -181,6 +179,12 @@ export class CardsPageComponent implements OnInit {
 
   resetDropdown(): void {
     this.showCheckbox = '';
+  }
+
+  initializeUsername(): void {
+    this.name = this.dataStorageService.name ? 
+      this.dataStorageService.name : 
+      localStorage.getItem('name'); 
   }
 
   onReset(): void {
