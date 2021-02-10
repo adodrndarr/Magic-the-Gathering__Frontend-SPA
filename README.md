@@ -4,7 +4,7 @@
 
 1.Filtering a card by color type.\
 2.Sorting in a specific order.\
-3.Searching a specific card by name or text. \
+3.Searching a specific card by name or text. 
 
 Magic The Gathering is a collectible and digital collectible card game created by Richard Garfield. 
 
