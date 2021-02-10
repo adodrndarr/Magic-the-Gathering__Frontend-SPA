@@ -2,12 +2,13 @@
 
 ## An angular application which retrieves cards and has few of the following functionalities: 
 
-1.Filtering a card by color type.\
-2.Sorting in a specific order.\
-3.Searching a specific card by name or text. 
+## 1.Filtering a card by color type.\
+## 2.Sorting in a specific order.\
+## 3.Searching a specific card by name or text. 
 
 Magic The Gathering is a collectible and digital collectible card game created by Richard Garfield. 
 
+\
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.0.
 
 ## Development server
