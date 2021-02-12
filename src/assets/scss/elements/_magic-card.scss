@@ -160,6 +160,12 @@
 
 /* Responsiveness */
 
+@media (max-width: 600px) {
+    .loading__container {
+        margin-top: 25%;
+    }
+}
+
 @media (max-width: 500px) {
     .card {
         width: 200px;
@@ -181,3 +187,4 @@
         }
     }
 }
+

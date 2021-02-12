@@ -24,6 +24,7 @@ export class CardsPageComponent implements OnInit {
   filteredCards: Card[] = [];
   showFilteredCards = false;
 
+  toggleDropdown = true;
   isLoading = false;
   errMessage = null;
   name: string;
@@ -185,6 +186,10 @@ export class CardsPageComponent implements OnInit {
     this.name = this.dataStorageService.name ? 
       this.dataStorageService.name : 
       localStorage.getItem('name'); 
+  }
+
+  toggleMenu(): void {
+    this.toggleDropdown = !this.toggleDropdown;
   }
 
   onReset(): void {

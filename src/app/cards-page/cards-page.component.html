@@ -1,10 +1,18 @@
 <header class="main-header">
-	<div class="container">
+	<div class="container" [ngClass]="{'extend-header': !toggleDropdown}">
 		<nav class="main-nav">
-            <h2 *ngIf="name" class="name">
+            <span 
+                (click)="toggleMenu()"
+                id="dropdown"
+                [ngClass]="{'full-opacity': toggleDropdown}"
+            >
+                &#9776; <!-- navigation menu (hamburger) -->
+            </span><br />
+
+            <h2 *ngIf="name" class="name" [ngClass]="{'show-item': toggleDropdown}">
                 Welcome <span class="userName">{{ name }}</span>, this is planet <span class="planet">Ampryn - 139</span>
             </h2>    
-            <div class="search__content">
+            <div class="search__content" [ngClass]="{'show-item': toggleDropdown}">
                 <input type="text" #searchEl placeholder="Search by name or text..." />
                 <button 
                     class="primary-button" 
@@ -29,7 +37,7 @@
                     [formGroup]="dropdownForm" 
                     (ngSubmit)="onSubmit()"
                 >
-                    <div class="colors__container">
+                    <div class="colors__container" [ngClass]="{'show-item': toggleDropdown}">
                         <h2 (click)="onSelect('colors')">Colors</h2>
                         <div [hidden]="!(showCheckbox === 'colors')">
                             <div class="colors" *ngFor="let color of filterByColors">
@@ -44,7 +52,7 @@
                         </div>
                     </div>
 
-                    <div class="types__container">
+                    <div class="types__container" [ngClass]="{'show-item': toggleDropdown}">
                         <h2 (click)="onSelect('types')">Types</h2>
                         <div [hidden]="!(showCheckbox === 'types')">
                             <div class="types"  *ngFor="let type of filterByTypes">
@@ -59,12 +67,13 @@
                         </div>
                     </div>
 
-                    <select formControlName="name">
+                    <select formControlName="name" [ngClass]="{'show-item': toggleDropdown}">
                         <option [ngValue]="'ascending'">Ascending</option>
                         <option [ngValue]="'descending'">Descending</option>
                     </select>
 
                     <button 
+                        [ngClass]="{'show-item': toggleDropdown}"
                         class="primary-button" 
                         type="submit" 
                         [disabled]="!dropdownForm.valid || isLoading"
