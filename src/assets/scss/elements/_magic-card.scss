@@ -160,14 +160,6 @@
 
 /* Responsiveness */
 
-@media (max-width: 768px) {
-    .loading__container {
-        margin-top: -250px;
-
-        & h2 { margin-top: 0; }
-    }
-}
-
 @media (max-width: 500px) {
     .card {
         width: 200px;
