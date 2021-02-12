@@ -162,7 +162,9 @@
 
 @media (max-width: 600px) {
     .loading__container {
-        margin-top: 25%;
+        margin-top: 0;
+
+        & h2 { margin-top: 0; }
     }
 }
 
