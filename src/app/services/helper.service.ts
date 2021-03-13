@@ -10,11 +10,13 @@ export class HelperService {
 
   filterItems(itemsToFilter, property, searchItems): any {
     return itemsToFilter.filter(item => {
-      return item[property].some(mainItem => {
-        return searchItems.some(searchItem => {
-          return searchItem.toLowerCase() === mainItem.toLowerCase();
+      if (item[property]) {
+        return item[property].some(mainItem => {
+          return searchItems.some(searchItem => {
+            return searchItem.toLowerCase() === mainItem.toLowerCase();
+          });
         });
-      });
+      }
     });
   }
 
