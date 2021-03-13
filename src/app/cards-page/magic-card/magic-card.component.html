@@ -30,7 +30,7 @@
         </a>   
 
         <div class="card__colors">
-            <div *ngIf="card.colors.length > 0">
+            <div *ngIf="card?.colors?.length > 0">
                 <h4>Colors:</h4>
                 <ul>
                     <li *ngFor="let color of card.colors">{{ color }}</li>
