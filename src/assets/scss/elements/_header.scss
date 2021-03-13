@@ -22,6 +22,11 @@
     height: 100px;
     width: 100%;
 
+    & {
+        position: relative;
+        top: -10px;
+    }
+
     & ul { text-align: center; }
     & li { display: flex; }
     & p { 
@@ -59,6 +64,8 @@
 
     & .name {
         position: relative;
+        top: -25px;
+        
         margin: 0;
         text-align: center;
     }
@@ -207,15 +214,6 @@
     }
 }
 
-@media (max-width: 1024px) {
-    .main-nav {
-        position: relative;
-        top: -10px;
-
-        & .name { margin-bottom: 20px; }
-    }
-}
-
 @media (max-width: 770px){
     .show-item { display: none; }
 
@@ -297,6 +295,13 @@
     #dropdown {
         margin-left: 0;
         margin-right: 70%;
+    }
+
+    .main-nav {
+        & .name {
+            position: relative;
+            top: 0;
+        }
     }
 }
 

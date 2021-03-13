@@ -13,6 +13,7 @@
                 Welcome <span class="userName">{{ name }}</span>, this is planet <span class="planet">Ampryn - 139</span>
             </h2>    
             <div class="search__content" [ngClass]="{'show-item': toggleDropdown}">
+                <p *ngIf="showFilteredCards">Found <b>{{ filteredCards.length }}</b> result(s).</p>
                 <input type="text" #searchEl placeholder="Search by name or text..." />
                 <button 
                     class="primary-button" 
@@ -28,7 +29,6 @@
                 >
                     Reset
                 </button>    
-                <p *ngIf="showFilteredCards">Found <b>{{ filteredCards.length }}</b> result(s).</p>
             </div>  
 
 			<div class="main-nav__list">              
