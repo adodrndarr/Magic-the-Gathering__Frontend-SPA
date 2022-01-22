@@ -6,7 +6,7 @@ import { FormGroup } from '@angular/forms';
 })
 export class ValidatorService {
   constructor() { }
-  
+
 
   public isInvalidInput(fieldName: string, form: FormGroup): boolean {
     const invalid = form.controls[fieldName].invalid;

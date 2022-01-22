@@ -79,7 +79,7 @@
                         [disabled]="!dropdownForm.valid || isLoading"
                     >Filter</button>
                 </form>
-                <h2 routerLink="/home">Logout</h2>
+                <h2 (click)="onLogout()">Logout</h2>
 			</div>
 		</nav>
 	</div>

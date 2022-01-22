@@ -9,12 +9,12 @@ export class HelperService {
 
 
   filterItems(itemsToFilter, property, searchItems): any {
+
     return itemsToFilter.filter(item => {
       if (item[property]) {
-        return item[property].some(mainItem => {
-          return searchItems.some(searchItem => {
-            return searchItem.toLowerCase() === mainItem.toLowerCase();
-          });
+
+        return item[property].some(subItem => {
+          return searchItems.some(searchItem => searchItem.toLowerCase() === subItem.toLowerCase());
         });
       }
     });
@@ -52,18 +52,17 @@ export class HelperService {
 
     hasSuchName = this.checkTermPresenceIn(obj.name, searchTerm);
     hasSuchText = this.checkTermPresenceIn(obj.text, searchTerm);
-    
+
     return hasSuchName || hasSuchText;
   }
 
   checkTermPresenceIn(text: string, term: string): boolean {
-    if (text) {
-      const textToCheck = text.toLowerCase();
-      const searchTerm = term.toLowerCase();
+    if (!text)
+      return false;
 
-      return textToCheck.includes(searchTerm);
-    }
+    const textToCheck = text.toLowerCase();
+    const searchTerm = term.toLowerCase();
 
-    return false;
+    return textToCheck.includes(searchTerm);
   }
 }
